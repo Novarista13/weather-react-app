@@ -58,6 +58,14 @@ export default function Weather() {
         <div>
           <img src={response.src} alt={response.description} />
         </div>
+        <a
+          href="https://github.com/Novarista13/weather-react-app"
+          target="_blank"
+          rel="noreferrer"
+          className="text-decoration-none d-block fs-5"
+        >
+          Open-Sourced
+        </a>
       </div>
     );
   } else {
@@ -73,6 +81,14 @@ export default function Weather() {
           wrapperClass="blocks-wrapper"
           colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
         />
+        <a
+          href="https://github.com/Novarista13/weather-react-app"
+          target="_blank"
+          rel="noreferrer"
+          className="text-decoration-none d-block fs-5"
+        >
+          Open-Sourced
+        </a>
       </div>
     );
   }
