@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { useState } from "react";
+import Dashboard from "./Dashboard";
 import "./App.css";
-import { ColorRing } from "react-loader-spinner";
+// import { ColorRing } from "react-loader-spinner";
+import "bootstrap/dist/css/bootstrap.css";
 
 export default function Weather() {
   let [city, setCity] = useState("");
@@ -34,7 +35,7 @@ export default function Weather() {
   }
 
   let form = (
-    <form className="input-group" onSubmit={submitHandler}>
+    <form onSubmit={submitHandler}>
       <input
         type="text"
         className="form-control"
@@ -42,53 +43,54 @@ export default function Weather() {
         value={city}
         onChange={showCity}
       />
-      <input type="submit" value="search" className="btn btn-primary" />
+      <input type="submit" value="Change Location" className="btn search-btn" />
     </form>
   );
 
   if (reload) {
     return (
-      <div className="Weather">
-        <h1>{form}</h1>
-        <div>City: {response.city}</div>
-        <div>Temp: {response.temp}°C</div>
-        <div>Description: {response.description}</div>
-        <div>Humidity: {response.humidity}%</div>
-        <div>Wind: {response.wind} km/h</div>
-        <div>
+      <div>
+        <Dashboard
+          city={response.city}
+          temp={response.city}
+          description={response.description}
+          humidity={response.humidity}
+          wind={response.wind}
+        />
+        {form}
+        {/* <div>
           <img src={response.src} alt={response.description} />
-        </div>
-        <a
+        </div> */}
+        {/* <a
           href="https://github.com/Novarista13/weather-react-app"
           target="_blank"
           rel="noreferrer"
           className="text-decoration-none d-block fs-5"
         >
           Open-Sourced
-        </a>
+        </a> */}
       </div>
     );
   } else {
     return (
-      <div className="Weather">
-        <h1>{form}</h1>
-        <ColorRing
+      <div>
+        <Dashboard
+          city="Yangon"
+          temp={0}
+          description="sunny"
+          humidity={0}
+          wind={0}
+        />
+        {form}
+        {/* <ColorRing
           visible={true}
           height="30"
           width="30"
           ariaLabel="blocks-loading"
           wrapperStyle={{}}
           wrapperClass="blocks-wrapper"
-          colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
-        />
-        <a
-          href="https://github.com/Novarista13/weather-react-app"
-          target="_blank"
-          rel="noreferrer"
-          className="text-decoration-none d-block fs-5"
-        >
-          Open-Sourced
-        </a>
+          colors={["#5d8cc7", "#5d8cc7", "#5d8cc7", "#5d8cc7", "#5d8cc7"]}
+        /> */}
       </div>
     );
   }

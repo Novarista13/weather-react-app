@@ -1,24 +1,16 @@
-.App {
+/* .App {
   text-align: center;
-}
-
+} */
+/* 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 
 .App-header {
-  background-color: #d4ddee;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   font-size: calc(10px + 2vmin);
-  color: rgb(95, 159, 215);
-}
-.Weather {
-  margin-top: 100px;
 }
 .App-link {
   color: #61dafb;
@@ -31,4 +23,99 @@
   to {
     transform: rotate(360deg);
   }
+}
+.main-dashboard {
+  width: 780px;
+  height: 500px;
+  color: #fff;
+}
+
+.information-box {
+  flex-shrink: 0;
+  border-radius: 20px;
+  background-image: linear-gradient(
+      136deg,
+      rgba(136, 235, 239, 0.9) 0%,
+      rgba(83, 91, 230, 0.7) 100%
+    ),
+    url("background.jpg");
+  background-size: cover;
+  color: white;
+  z-index: 1;
+  padding: 30px;
+  font-size: 30px;
+}
+.information {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 700;
+}
+.temp {
+  font-size: 40px;
+}
+.day {
+  font-size: 37px;
+}
+.date {
+  font-size: 22px;
+  font-weight: 500;
+}
+.current-city {
+  font-size: 20px;
+  font-weight: 600;
+}
+.weather-box {
+  height: 93%;
+  border-radius: 0 25px 25px 0;
+  background: #222831;
+  background-size: cover;
+  color: white;
+  margin: 20px 0 20px 0;
+  padding: 30px;
+  padding-left: 45px;
+}
+.weather-condition-box {
+  padding-bottom: 20px;
+}
+.weather-condition {
+  padding-bottom: 10px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700px;
+  font-style: normal;
+  line-height: normal;
+}
+.forecast-box {
+  margin-bottom: 20px;
+}
+.forecast {
+  width: 104px;
+  height: 120px;
+  flex-shrink: 0;
+  color: #222831;
+  font-size: 15px;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 1px 2px 2px 0px #222831;
+  /* margin-bottom: 20px; */
+  margin: 20px 0;
+}
+.forecast-temp {
+  font-size: 20px;
+  font-weight: 700;
+}
+.next-days {
+  background: #272e37;
+  color: white;
+}
+.search-btn {
+  width: 100%;
+  color: white;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: linear-gradient(
+    131deg,
+    rgba(144, 217, 224, 0.9) 0%,
+    rgba(84, 96, 230, 0.9) 100%
+  );
 }
