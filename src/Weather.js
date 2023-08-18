@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
-import ReactAnimatedWeather from "react-animated-weather";
 import WeatherIcon from "./WeatherIcon";
 
 import "./App.css";
@@ -51,7 +50,7 @@ export default function Weather() {
 
   function unitHandler(event) {
     event.preventDefault();
-    if (unit == "celsius") {
+    if (unit === "celsius") {
       setUnit("fahren");
       setUnitBtn("°C");
     } else {
@@ -181,6 +180,19 @@ export default function Weather() {
           </div>
         </div>
       </div>
+
+      <footer>
+        UI Design credit goes to
+        <a
+          href="https://www.figma.com/community/file/1176173521127853129"
+          target="_blank"
+          rel="noreferrer"
+          className="text-decoration-none"
+        >
+          {" "}
+          Here
+        </a>
+      </footer>
     </div>
   );
 

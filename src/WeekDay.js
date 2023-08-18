@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function WeekDay(props) {
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
