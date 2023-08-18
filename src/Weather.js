@@ -16,14 +16,21 @@ export default function Weather() {
   let [unitBtn, setUnitBtn] = useState("°F");
 
   function handleResponse(response) {
-    setDate(new Date(response.data.list[0].dt * 1000));
+    console.log(response);
+
+    if (response.data.city.country !== "MM") {
+      setDate(new Date(response.data.list[0].dt * 1000));
+    } else {
+      setDate(new Date());
+    }
+
     setResponse([
       {
         city: response.data.city.name,
         country: response.data.city.country,
         temp: response.data.list[0].temp.day,
         wind: response.data.list[0].speed,
-        precipitation: Math.round(response.data.list[0].pop * 100),
+        precipitation: Math.round(response.data.list[0].rain),
         humidity: response.data.list[0].humidity,
         description: response.data.list[0].weather[0].description,
         icon: response.data.list[0].weather[0].icon,
@@ -34,15 +41,15 @@ export default function Weather() {
         icon: response.data.list[1].weather[0].icon,
       },
       {
-        temp: Math.round(response.data.list[2].temp.day),
+        temp: Math.round(response.data.list[2].temp.night),
         icon: response.data.list[2].weather[0].icon,
       },
       {
-        temp: Math.round(response.data.list[3].temp.day),
+        temp: Math.round(response.data.list[3].temp.night),
         icon: response.data.list[3].weather[0].icon,
       },
       {
-        temp: Math.round(response.data.list[4].temp.day),
+        temp: Math.round(response.data.list[4].temp.night),
         icon: response.data.list[4].weather[0].icon,
       },
     ]);
@@ -96,7 +103,7 @@ export default function Weather() {
     <div className="row main-dashboard m-5">
       <div className="col-6 col-md information-box row flex-column">
         <div className="col row information flex-column">
-          <DateFormatt date={date} />
+          <DateFormatt date={date} country={response.country} />
           <div className="current-city pt-1">
             {response[0].city}, {response[0].country}
           </div>
@@ -122,7 +129,9 @@ export default function Weather() {
             <div className="weather-condition-box">
               <div className="weather-condition">
                 PRECIPITATION
-                <span className="float-end">{response[0].precipitation}%</span>
+                <span className="float-end">
+                  {response[0].precipitation ? response[0].precipitation : 0}%
+                </span>
               </div>
               <div className="weather-condition">
                 HUMIDITY
