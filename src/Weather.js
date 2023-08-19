@@ -5,9 +5,6 @@ import "./App.css";
 import DateFormatt from "./DateFormatt";
 import WeatherDescription from "./WeatherDescription";
 import WeatherCondition from "./WeatherCondition";
-import WeekDay from "./WeekDay";
-import WeatherIcon from "./WeatherIcon";
-import WeatherTemp from "./WeatherTemp";
 import WeatherForecast from "./WeatherForecast";
 
 export default function Weather() {
