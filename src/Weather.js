@@ -55,19 +55,19 @@ export default function Weather() {
 
     setForecast([
       {
-        temp: Math.round(response.data.list[1].temp.morn),
+        temp: Math.round(response.data.list[1].temp.day),
         icon: response.data.list[1].weather[0].icon,
       },
       {
-        temp: Math.round(response.data.list[2].temp.morn),
+        temp: Math.round(response.data.list[2].temp.day),
         icon: response.data.list[2].weather[0].icon,
       },
       {
-        temp: Math.round(response.data.list[3].temp.morn),
+        temp: Math.round(response.data.list[3].temp.day),
         icon: response.data.list[3].weather[0].icon,
       },
       {
-        temp: Math.round(response.data.list[4].temp.morn),
+        temp: Math.round(response.data.list[4].temp.day),
         icon: response.data.list[4].weather[0].icon,
       },
     ]);
