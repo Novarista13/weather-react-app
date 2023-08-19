@@ -1,58 +1,84 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
-import WeatherIcon from "./WeatherIcon";
-
 import "./App.css";
 import DateFormatt from "./DateFormatt";
-import WeatherTemp from "./WeatherTemp";
+import WeatherDescription from "./WeatherDescription";
+import WeatherCondition from "./WeatherCondition";
 import WeekDay from "./WeekDay";
+import WeatherIcon from "./WeatherIcon";
+import WeatherTemp from "./WeatherTemp";
+import WeatherForecast from "./WeatherForecast";
 
 export default function Weather() {
   let [city, setCity] = useState("");
-  let [response, setResponse] = useState([{}, {}, {}, {}, {}]);
+  let [response, setResponse] = useState({});
+  let [forecast, setForecast] = useState([{}, {}, {}, {}]);
   let [date, setDate] = useState(new Date());
   let [unit, setUnit] = useState("celsius");
   let [unitBtn, setUnitBtn] = useState("°F");
 
+  // Weather api
+
+  function weatherApi() {
+    let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(url).then(handleResponse);
+  }
+
   function handleResponse(response) {
+    setDate(new Date(response.data.dt * 1000));
+
+    setResponse({
+      temp: response.data.main.temp,
+      humidity: response.data.main.humidity,
+      description: response.data.weather[0].description,
+      icon: response.data.weather[0].icon,
+      wind: response.data.wind.speed,
+      precipitation: Math.round(response.data.wind.gust),
+      city: response.data.name,
+      country: response.data.sys.country,
+      // src: `http://openweathermap.org/img/wn/${}@2x.png`,
+    });
+  }
+
+  // Forecast api
+
+  function forecastApi() {
+    let apiKey = "bd5e378503939ddaee76f12ad7a97608";
+    let url = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&cnt=5&appid=${apiKey}&units=metric`;
+    axios.get(url).then(handleForecastResponse);
+  }
+
+  function handleForecastResponse(response) {
     console.log(response);
 
-    if (response.data.city.country !== "MM") {
-      setDate(new Date(response.data.list[0].dt * 1000));
-    } else {
-      setDate(new Date());
-    }
-
-    setResponse([
+    setForecast([
       {
-        city: response.data.city.name,
-        country: response.data.city.country,
-        temp: response.data.list[0].temp.day,
-        wind: response.data.list[0].speed,
-        precipitation: Math.round(response.data.list[0].rain),
-        humidity: response.data.list[0].humidity,
-        description: response.data.list[0].weather[0].description,
-        icon: response.data.list[0].weather[0].icon,
-        // src: `http://openweathermap.org/img/wn/${}@2x.png`,
-      },
-      {
-        temp: Math.round(response.data.list[1].temp.day),
+        temp: Math.round(response.data.list[1].temp.morn),
         icon: response.data.list[1].weather[0].icon,
       },
       {
-        temp: Math.round(response.data.list[2].temp.night),
+        temp: Math.round(response.data.list[2].temp.morn),
         icon: response.data.list[2].weather[0].icon,
       },
       {
-        temp: Math.round(response.data.list[3].temp.night),
+        temp: Math.round(response.data.list[3].temp.morn),
         icon: response.data.list[3].weather[0].icon,
       },
       {
-        temp: Math.round(response.data.list[4].temp.night),
+        temp: Math.round(response.data.list[4].temp.morn),
         icon: response.data.list[4].weather[0].icon,
       },
     ]);
+  }
+
+  // Form Handlers
+  function submitHandler(event) {
+    event.preventDefault();
+    weatherApi();
+    forecastApi();
+    setCity("");
   }
 
   function unitHandler(event) {
@@ -64,14 +90,6 @@ export default function Weather() {
       setUnit("celsius");
       setUnitBtn("°F");
     }
-  }
-
-  function submitHandler(event) {
-    event.preventDefault();
-    let appId = "bd5e378503939ddaee76f12ad7a97608";
-    let url = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&cnt=5&appid=${appId}&units=metric`;
-    axios.get(url).then(handleResponse);
-    setCity("");
   }
 
   function showCity(event) {
@@ -99,92 +117,55 @@ export default function Weather() {
       </form>
     </div>
   );
+
+  let forcastBox = (
+    <div className="row forecast-box flex-row px-0 mx-0">
+      <WeatherForecast
+        forecast={forecast}
+        unit={unit}
+        date={date}
+        x={0}
+        next={1}
+      />
+      <WeatherForecast
+        forecast={forecast}
+        unit={unit}
+        date={date}
+        x={1}
+        next={2}
+      />
+      <WeatherForecast
+        forecast={forecast}
+        unit={unit}
+        date={date}
+        x={2}
+        next={3}
+      />
+      <WeatherForecast
+        forecast={forecast}
+        unit={unit}
+        date={date}
+        x={3}
+        next={4}
+      />
+    </div>
+  );
+
   let Dashboard = (
     <div className="row main-dashboard m-5">
       <div className="col-6 col-md information-box row flex-column">
         <div className="col row information flex-column">
-          <DateFormatt date={date} country={response.country} />
-          <div className="current-city pt-1">
-            {response[0].city}, {response[0].country}
-          </div>
+          <DateFormatt date={date} response={response} />
         </div>
         <div className="col row information flex-column">
-          <div className="mt-auto">
-            <div className="icon">
-              <WeatherIcon icon={response[0].icon} size={80} color="white" />
-            </div>
-            <div className="temp">
-              <WeatherTemp
-                temp={response[0].temp ? response[0].temp : 0}
-                unit={unit}
-              />
-            </div>
-            <div className="description">{response[0].description}</div>
-          </div>
+          <WeatherDescription response={response} unit={unit} />
         </div>
       </div>
       <div className="col-6 col-md p-0">
         <div className=" weather-box">
           <div className="row flex-column">
-            <div className="weather-condition-box">
-              <div className="weather-condition">
-                PRECIPITATION
-                <span className="float-end">
-                  {response[0].precipitation ? response[0].precipitation : 0}%
-                </span>
-              </div>
-              <div className="weather-condition">
-                HUMIDITY
-                <span className="float-end">{response[0].humidity}% </span>
-              </div>
-              <div className="weather-condition">
-                WIND
-                <span className="float-end">{response[0].wind} km/h </span>
-              </div>
-            </div>
-
-            <div className="row forecast-box flex-row px-0 mx-0">
-              <div className="forecast col my-3 py-3 text-center">
-                <WeatherIcon icon={response[1].icon} size={30} color="black" />
-                <WeekDay date={date} next={1} />
-                <div className="forecast-temp">
-                  <WeatherTemp
-                    temp={response[1].temp ? response[1].temp : 0}
-                    unit={unit}
-                  />
-                </div>
-              </div>
-              <div className="forecast next-days  col my-3 py-3 text-center">
-                <WeatherIcon icon={response[2].icon} size={30} color="white" />
-                <WeekDay date={date} next={2} />
-                <div className="forecast-temp">
-                  <WeatherTemp
-                    temp={response[2].temp ? response[2].temp : 0}
-                    unit={unit}
-                  />
-                </div>
-              </div>
-              <div className="forecast next-days  col my-3 py-3 text-center">
-                <WeatherIcon icon={response[3].icon} size={30} color="white" />
-                <WeekDay date={date} next={3} />
-                <div className="forecast-temp">
-                  <WeatherTemp
-                    temp={response[3].temp ? response[3].temp : 0}
-                    unit={unit}
-                  />
-                </div>
-              </div>
-              <div className="forecast next-days col my-3 py-3 text-center">
-                <WeatherIcon icon={response[4].icon} size={30} color="white" />
-                <WeekDay date={date} next={4} />
-                <div className="forecast-temp">
-                  <WeatherTemp
-                    temp={response[4].temp ? response[4].temp : 0}
-                    unit={unit}
-                  />
-                </div>
-              </div>
-            </div>
+            <WeatherCondition response={response} />
+            <div>{forcastBox}</div>
             {form}
           </div>
         </div>
@@ -206,22 +187,4 @@ export default function Weather() {
   );
 
   return <div>{Dashboard}</div>;
-
-  // if (reload) {
-  //   return (
-  //     <div>
-  //       {Dashboard}
-  //       {/* <a
-  //         href="https://github.com/Novarista13/weather-react-app"
-  //         target="_blank"
-  //         rel="noreferrer"
-  //         className="text-decoration-none d-block fs-5"
-  //       >
-  //         Open-Sourced
-  //       </a> */}
-  //     </div>
-  //   );
-  // } else {
-  //   return <div>{Dashboard}</div>;
-  // }
 }

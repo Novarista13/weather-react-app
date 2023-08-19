@@ -42,6 +42,9 @@ export default function DateFormatt(props) {
       <div className="date">
         {date} {month} {year}
       </div>
+      <div className="current-city pt-1">
+        {props.response.city}, {props.response.country}
+      </div>
     </div>
   );
 }
