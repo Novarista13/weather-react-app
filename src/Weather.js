@@ -95,7 +95,7 @@ export default function Weather() {
 
   let form = (
     <div>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} className="col-12">
         <input
           type="text"
           className="form-control mb-2"
@@ -106,7 +106,7 @@ export default function Weather() {
         <input
           type="submit"
           value="Change Location"
-          className="btn search-btn d-inline"
+          className="btn search-btn d-inline "
         />
         <a href="/" onClick={unitHandler} className="btn unit-btn ms-3">
           {unitBtn}
@@ -149,20 +149,20 @@ export default function Weather() {
   );
 
   let Dashboard = (
-    <div className="row main-dashboard m-5">
-      <div className="col-6 col-md information-box row flex-column">
-        <div className="col row information flex-column">
+    <div className="row main-dashboard mx-auto my-5">
+      <div className="col-lg-6 col-md-12 information-box row flex-row">
+        <div className="col-lg-12 col-6 row information flex-column">
           <DateFormatt date={date} response={response} />
         </div>
-        <div className="col row information flex-column">
+        <div className="col-lg-12 description-box col-6 row information flex-row flex-lg-column ">
           <WeatherDescription response={response} unit={unit} />
         </div>
       </div>
-      <div className="col-6 col-md p-0">
+      <div className="col-lg-6 col-12 p-0">
         <div className=" weather-box">
-          <div className="row flex-column">
+          <div className="row flex-row">
             <WeatherCondition response={response} />
-            <div>{forcastBox}</div>
+            <div className="col-md-7 col-12 col-lg-12">{forcastBox}</div>
             {form}
           </div>
         </div>

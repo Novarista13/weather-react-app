@@ -2,7 +2,7 @@ import React from "react";
 
 export default function WeatherCondition(props) {
   return (
-    <div className="weather-condition-box">
+    <div className="weather-condition-box col-md-5 col-12 col-lg-12">
       <div className="weather-condition">
         PRECIPITATION
         <span className="float-end">

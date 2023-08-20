@@ -9,6 +9,66 @@
 } */
 @import url("https://fonts.googleapis.com/css2?family=Gruppo&family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300&display=swap");
 
+@media (max-width: 1400px) {
+  .main-dashboard {
+    width: 780px;
+  }
+  .forecast-temp {
+    font-size: 20px;
+  }
+
+  .description,
+  .temp,
+  .icon {
+    text-align: left;
+    font-size: 30px;
+  }
+  .description-box {
+    margin-left: 0;
+  }
+}
+@media (max-width: 992px) {
+  .main-dashboard {
+    width: 600px;
+  }
+  .forecast-temp {
+    font-size: 18px;
+  }
+  .weather-box {
+    border-radius: 25px !important;
+    margin: 0;
+    margin-top: 20px;
+  }
+  div .weather-condition-box {
+    margin-top: 1.5rem;
+  }
+  .description,
+  .temp,
+  .icon {
+    text-align: center;
+    font-size: 25px;
+  }
+  .information-box {
+    margin: 0 !important;
+  }
+
+  div .description-box {
+    margin-left: 35px;
+  }
+}
+@media (max-width: 576px) {
+  .main-dashboard {
+    width: 400px;
+  }
+  .forecast-temp {
+    font-size: 15px;
+  }
+
+  div .description-box {
+    margin-left: 35px;
+  }
+}
+
 .App-header {
   align-items: center;
   font-size: calc(10px + 2vmin);
@@ -27,9 +87,9 @@
 }
 .main-dashboard {
   font-family: "Montserrat", sans-serif;
-  width: 780px;
   height: 500px;
   color: #fff;
+  margin: 0 auto;
 }
 
 .information-box {
@@ -45,15 +105,11 @@
   color: white;
   z-index: 1;
   padding: 30px;
-  font-size: 30px;
 }
 .information {
   font-family: Montserrat;
   font-style: normal;
   font-weight: 700;
-}
-.temp {
-  font-size: 40px;
 }
 .day {
   font-size: 37px;
@@ -104,7 +160,6 @@
   margin: 20px 0;
 }
 .forecast-temp {
-  font-size: 20px;
   font-weight: 700;
 }
 .next-days {
@@ -112,7 +167,7 @@
   color: white;
 }
 .search-btn {
-  width: 63%;
+  width: 64%;
   color: white;
   flex-shrink: 0;
   border-radius: 10px;
