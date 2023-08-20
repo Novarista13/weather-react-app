@@ -150,7 +150,7 @@ export default function Weather() {
 
   let Dashboard = (
     <div className="row main-dashboard mx-auto my-5">
-      <div className="col-lg-6 col-md-12 information-box mt-0 row flex-row g-lg-4 g-md-4 g-sm-4 g-0">
+      <div className="col-lg-6 col-md-12 information-box mt-0 ms-0 row flex-row g-lg-4 g-md-4 g-sm-4 g-0">
         <div className="col-lg-12 col-md-6 col-7 row information flex-column">
           <DateFormatt date={date} response={response} />
         </div>
