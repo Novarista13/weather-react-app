@@ -169,7 +169,17 @@ export default function Weather() {
       </div>
 
       <footer>
-        UI Design credit goes to
+        This website is coded by
+        <a
+          href="https://github.com/Novarista13"
+          target="_blank"
+          rel="noreferrer"
+          className="text-decoration-none"
+        >
+          {" "}
+          Nova
+        </a>{" "}
+        & UI Design credit goes to
         <a
           href="https://www.figma.com/community/file/1176173521127853129"
           target="_blank"
