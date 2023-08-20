@@ -4,7 +4,7 @@ import WeatherTemp from "./WeatherTemp";
 
 export default function WeatherDescription(props) {
   return (
-    <div className="mt-auto row  flex-md-row">
+    <div className="mt-auto row description-row flex-md-row">
       <div className="icon col-md-6 col-sm-6 col-lg-12">
         <WeatherIcon icon={props.response.icon} size={80} color="white" />
       </div>
