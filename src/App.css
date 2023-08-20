@@ -58,7 +58,7 @@
 }
 @media (max-width: 576px) {
   .main-dashboard {
-    width: 400px;
+    width: 380px;
   }
   .forecast-temp {
     font-size: 15px;
