@@ -26,6 +26,10 @@
   .description-box {
     margin-left: 0;
   }
+  .weather-box {
+    padding: 30px;
+    padding-left: 45px;
+  }
 }
 @media (max-width: 992px) {
   .main-dashboard {
@@ -54,6 +58,9 @@
 
   div .description-box {
     margin-left: 35px;
+  }
+  .weather-box {
+    padding: 30px;
   }
 }
 @media (max-width: 576px) {
@@ -130,7 +137,6 @@
   background-size: cover;
   color: white;
   margin: 20px 0 20px 0;
-  padding: 30px;
 }
 .weather-condition-box {
   padding-bottom: 20px;
