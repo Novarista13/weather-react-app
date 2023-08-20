@@ -30,6 +30,9 @@
     padding: 30px;
     padding-left: 45px;
   }
+  .day {
+    font-size: 37px;
+  }
 }
 @media (max-width: 992px) {
   .main-dashboard {
@@ -73,6 +76,9 @@
 
   div .description-box {
     margin-left: 35px;
+  }
+  .day {
+    font-size: 30px;
   }
 }
 
@@ -119,7 +125,6 @@
   font-weight: 700;
 }
 .day {
-  font-size: 37px;
   font-weight: 700;
 }
 .date {
