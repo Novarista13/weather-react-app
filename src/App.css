@@ -119,7 +119,7 @@
       rgba(136, 235, 239, 0.9) 0%,
       rgba(83, 91, 230, 0.7) 100%
     ),
-    url("background.jpg");
+    url("./images/background.jpg");
   background-size: cover;
   color: white;
   z-index: 1;
